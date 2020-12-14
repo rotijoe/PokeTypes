@@ -7,35 +7,36 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1 id="appTitle">goBattleTypes</h1>
-
     <main id="app-container">
-      <section class="attack-box box attackSug">
-        <div class="list__container go-list">
-          <h4 class="list__title">Attack with...</h4>
-          <ul class="list" id="attackYesList"></ul>
-        </div>
-        <div class="list__container return-list">
-          <h4 class="list__title">Don't Attack with...</h4>
-          <ul class="list" id="attackNoList"></ul>
-        </div>
-      </section>
+      <h1 id="appTitle">goBattleTypes</h1>
 
-      <section class="btn-container">
-        <button id="resetButton">Reset</button>
-        <div class="opponent-btns"><!-- js --></div>
-      </section>
+      <div id="app">
+        <section class="box" id="attYesBox">
+          <h4 class="box__title">Attack with...</h4>
+          <ul class="box__list" id="attackYesList"></ul>
+        </section>
 
-      <section class="defence-box box defenceSug">
-        <div class="list__container go-list">
-          <h4 class="list__title">Defend with...</h4>
-          <ul class="list" id="defendYesList"></ul>
-        </div>
-        <div class="list__container return-list">
-          <h4 class="list__title">Don't Defend with...</h4>
-          <ul class="list" id="defendNoList"></ul>
-        </div>
-      </section>
+        <section class="box" id="defYesBox">
+          <h4 class="box__title">Defend with...</h4>
+          <ul class="box__list" id="defendYesList"></ul>
+        </section>
+
+        <section class="box" id="attNoBox">
+          <h4 class="box__title">Don't Attack with...</h4>
+          <ul class="box__list" id="attackNoList"></ul>
+        </section>
+
+        <section class="box" id="defNoBox">
+          <h4 class="box__title">Don't Defend with...</h4>
+          <ul class="box__list" id="defendNoList"></ul>
+        </section>
+
+        <section class="box" id="btnBox">
+          <h4 class="box__title">Select your opponents type</h4>
+          <div class="opponent-btns"><!-- js --></div>
+          <button id="resetButton">Reset</button>
+        </section>
+      </div>
     </main>
 
     <!-- <script src="script.js"></script> -->
