@@ -2,7 +2,7 @@
   "name": "poketypes",
   "version": "1.0.0",
   "description": "pokemon go battle app",
-  "main": "script.js",
+  "main": "index.js",
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^10.1.0",
@@ -16,7 +16,7 @@
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
     "compile:sass": "node-sass main.scss style.comp.css",
-    "concat:css": "concat -o style.concat.css icon-font.css style.comp.css",
+    "concat:css": "concat -o style.concat.css style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' style.concat.css -o style.prefix.css",
     "compress:css": "node-sass style.prefix.css style.css --output-style compressed",
     "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"
