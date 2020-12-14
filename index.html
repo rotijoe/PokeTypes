@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1 id="appTitle">goBattleTypes</h1>
+
+    <main id="app-container">
+      <section class="attack-box box attackSug">
+        <div class="list__container go-list">
+          <h4 class="list__title">Attack with...</h4>
+          <ul class="list" id="attackYesList"></ul>
+        </div>
+        <div class="list__container return-list">
+          <h4 class="list__title">Don't Attack with...</h4>
+          <ul class="list" id="attackNoList"></ul>
+        </div>
+      </section>
+
+      <section class="btn-container">
+        <button id="resetButton">Reset</button>
+        <div class="opponent-btns"><!-- js --></div>
+      </section>
+
+      <section class="defence-box box defenceSug">
+        <div class="list__container go-list">
+          <h4 class="list__title">Defend with...</h4>
+          <ul class="list" id="defendYesList"></ul>
+        </div>
+        <div class="list__container return-list">
+          <h4 class="list__title">Don't Defend with...</h4>
+          <ul class="list" id="defendNoList"></ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="real.js"></script>
+  </body>
+</html>
