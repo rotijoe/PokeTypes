@@ -192,7 +192,10 @@ const btnContainer = document.querySelector(".opponent-btns");
 
 //  PRINT BUTTON FUNCTION
 
-function printButtons(i) {
+const buttons = [];
+
+//BtnPrint (onLoad?)
+for (let i = 0; i < typesArr.length; i++) {
   let btn = document.createElement("div");
   btn.dataset.type = typesArr[i];
   btn.className = "btn btn__opp-type";
@@ -200,15 +203,110 @@ function printButtons(i) {
   btnContainer.appendChild(btn);
 }
 
-function printConsecutive(func, start, stop, delay) {
-  let i = start;
-  let counter = setInterval(function () {
-    func(i);
-    i++;
-    if (i === stop) {
-      clearInterval(counter);
-    }
-  }, delay);
-}
+// function printButtons(i) {
+//   let btn = document.createElement("div");
+//   btn.dataset.type = typesArr[i];
+//   btn.className = "btn btn__opp-type";
+//   btn.innerHTML = `<img src="img/${typesArr[i]}.png">`;
+//   btnContainer.appendChild(btn);
+// }
 
-printConsecutive(printButtons, 0, typesArr.length, 175);
+// function printConsecutive(func, start, stop, delay) {
+//   let i = start;
+//   let counter = setInterval(function () {
+//     func(i);
+//     i++;
+//     if (i === stop) {
+//       clearInterval(counter);
+//     }
+//   }, delay);
+// }
+
+// printConsecutive(printButtons, 0, typesArr.length, 175);
+
+function buttonFunc() {
+  const buttons = document.querySelectorAll(".btn__opp-type");
+
+  let opponents = [];
+  console.log(buttons);
+  buttons.forEach((item) => {
+    item.addEventListener("click", () => {
+      console.log("hiihihih");
+      //setting type of button pressed
+      let btnType = item.dataset.type;
+
+      //control button UI
+      if (opponents.length < 2 || opponents.indexOf(btnType) !== -1) {
+        item.classList.toggle("enabled");
+      }
+
+      //managing buttons/opponents clicked
+      if (
+        opponents[0] !== btnType &&
+        opponents[1] !== btnType &&
+        opponents.length < 2
+      ) {
+        opponents.push(btnType);
+      } else if (opponents[0] === btnType) {
+        opponents.shift();
+      } else if (opponents[1] === btnType) {
+        opponents.pop();
+      } else if (opponents.length === 0) {
+        listItem.innerHTML = "";
+      }
+
+      const toPrint = {
+        attack: {
+          attackYes: [],
+          attackNo: [],
+        },
+        defend: {
+          defendYes: [],
+          defendNo: [],
+        },
+      };
+
+      for (let stra in toPrint) {
+        for (let act in toPrint[stra]) {
+          if (opponents.length === 1) {
+            toPrint[stra][act] = duels[stra][act][opponents[0]].single;
+          } else {
+            toPrint[stra][act] = duels[stra][act][opponents[0]][opponents[1]];
+          }
+
+          let filterList = [];
+
+          for (let i = 0; i < toPrint[stra][act].length; i++) {
+            if (toPrint[stra][act][i] === toPrint[stra][act][i + 1]) {
+              toPrint[stra][act][i + 1] = toPrint[stra][act][i + 1] + "Super";
+              filterList.push(toPrint[stra][act][i + 1]);
+            } else {
+              filterList.push(toPrint[stra][act][i]);
+            }
+          }
+          toPrint[stra][act] = [...new Set(filterList)];
+        }
+      }
+
+      //add icons to UI
+      for (let strate in toPrint) {
+        for (let acti in toPrint[strate]) {
+          let toHtml = document.querySelector("#" + acti + "List");
+          toHtml.innerHTML = "";
+          for (let icon of toPrint[strate][acti]) {
+            //set interval
+            let listItem = document.createElement("li");
+            listItem.classList.add(icon + "-icon", "box__list--btn", "btn");
+            if (icon.includes("Super")) {
+              listItem.innerHTML = `<img id="${icon}Option" src="img/super/${icon}.gif">`;
+            } else {
+              listItem.innerHTML = `<img id="${icon}Option" src="img/${icon}.png">`;
+            }
+            toHtml.appendChild(listItem);
+          }
+        }
+      }
+    });
+  });
+}
+buttonFunc();
