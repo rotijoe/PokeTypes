@@ -1,4 +1,6 @@
-console.log("Hi WOrld!");
+//  1)
+//  Build the basic pokemon typing logic.
+
 const typing = {
   attackYes: {
     bug: ["fire", "flying", "rock"],
@@ -95,21 +97,116 @@ const typing = {
   },
 };
 
+//  2)
+//  Create an array of the pokemon types from the Typing object.
+
+const typesArr = Object.keys(typing.attackYes);
+
+//Build the duel typing object from the Typing Object.
+
+//Architect the object
+const duels = {
+  attack: {
+    attackYes: {},
+    attackNo: {},
+  },
+  defend: {
+    defendYes: {},
+    defendNo: {},
+  },
+};
+
+//Populate Duels objecy
+for (let strat in duels) {
+  // let strategy = duels[strat];
+
+  for (let action in duels[strat]) {
+    // let action = strategy[act];
+    duels[strat][action] = {};
+
+    for (let i = 0; i < typesArr.length; i++) {
+      duels[strat][action][typesArr[i]] = {
+        single: typing[action][typesArr[i]],
+      };
+
+      for (let j = 0; j < typesArr.length; j++) {
+        if (typesArr[j] !== typesArr[i]) {
+          duels[strat][action][typesArr[i]][typesArr[j]] = [
+            typing[action][typesArr[i]],
+            typing[action][typesArr[j]],
+          ]
+            .flat()
+            .sort();
+        }
+      }
+    }
+  }
+}
+
+//  3)
+//  CLEANING DUEL TYPING OBJECT
+
+//cleaning the Attack object by comparing the lists in the Yes and No objects for each type.
+
+for (let t of typesArr) {
+  //loop through the each combination
+  for (let duel in duels.attack.attackYes[t]) {
+    let attYes = duels.attack.attackYes[t][duel];
+    let attNo = duels.attack.attackNo[t][duel];
+
+    //find the doubles
+    let attDbls = attYes.filter((x) => attNo.indexOf(x) !== -1);
+
+    //remove the doubles from both the Yes and No lists
+    duels.attack.attackYes[t][duel] = attYes.filter(
+      (x) => !attDbls.includes(x)
+    );
+    duels.attack.attackNo[t][duel] = attNo.filter((x) => !attDbls.includes(x));
+  }
+}
+
+//cleaning the Defend object by comparing the lists in the Yes and No objects for each type.
+
+for (let t of typesArr) {
+  for (let duel in duels.defend.defendYes[t]) {
+    //loop through the each combination
+    let defYes = duels.defend.defendYes[t][duel];
+    let defNo = duels.defend.defendNo[t][duel];
+
+    //find the doubles
+    let defDbls = defYes.filter((x) => defNo.indexOf(x) !== -1);
+
+    //remove the doubles from both the Yes and No lists
+    duels.defend.defendYes[t][duel] = defYes.filter(
+      (x) => !defDbls.includes(x)
+    );
+    duels.defend.defendNo[t][duel] = defNo.filter((x) => !defDbls.includes(x));
+  }
+}
+
+//view logic object in console.
+console.log(duels);
+
 // SELECTORS
 const btnContainer = document.querySelector(".opponent-btns");
 
-// LIST OF TYPES
-const typesArr = Object.keys(typing.attackYes);
-// for(let type in typing.attackYes) {
-//   typesArr.push(type);
-// }
-
-// BtnPrint
-//(onLoad?)
-for (let i = 0; i < typesArr.length; i++) {
+function printButtons(i) {
   let btn = document.createElement("div");
   btn.dataset.type = typesArr[i];
   btn.className = "btn btn__opp-type";
   btn.innerHTML = `<img src="img/${typesArr[i]}.png">`;
   btnContainer.appendChild(btn);
 }
+
+function printConsecutive(func, start, stop, delay) {
+  let i = start;
+  let counter = setInterval(function () {
+    func(i);
+    i++;
+    if (i === stop) {
+      clearInterval(counter);
+    }
+  }, delay);
+}
+
+printConsecutive(printButtons, 0, typesArr.length, 175);
