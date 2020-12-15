@@ -53,7 +53,7 @@ const typing = {
     flying: ["bug", "fighting", "grass", "ground", "ground"],
     ghost: ["bug", "fighting", "fighting", "normal", "normal", "poison"],
     grass: ["electric", "grass", "ground", "water"],
-    ground: ["electric", "electric", "poison", "rock"],
+    ground: ["electricSuper", "poison", "rock"],
     ice: ["ice"],
     normal: ["ghost", "ghost"],
     poison: ["grass", "fairy", "fighting", "poison"],
