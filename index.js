@@ -51,11 +51,11 @@ const typing = {
     fighting: ["bug", "dark", "rock"],
     fire: ["bug", "grass", "fire", "ice", "steel"],
     flying: ["bug", "fighting", "grass", "ground", "ground"],
-    ghost: ["bug", "fighting", "fighting", "normal", "normal", "poison"],
+    ghost: ["bug", "fightingSuper", "normalSuper", "poison"],
     grass: ["electric", "grass", "ground", "water"],
     ground: ["electricSuper", "poison", "rock"],
     ice: ["ice"],
-    normal: ["ghost", "ghost"],
+    normal: ["ghostSuper"],
     poison: ["grass", "fairy", "fighting", "poison"],
     psychic: ["fighting", "psychic"],
     rock: ["fire", "flying", "normal", "poison"],
@@ -192,7 +192,7 @@ const btnContainer = document.querySelector(".opponent-btns");
 
 //  PRINT BUTTON FUNCTION
 
-const buttons = [];
+// const buttons = [];
 
 //BtnPrint (onLoad?)
 for (let i = 0; i < typesArr.length; i++) {
@@ -224,89 +224,103 @@ for (let i = 0; i < typesArr.length; i++) {
 
 // printConsecutive(printButtons, 0, typesArr.length, 175);
 
-function buttonFunc() {
-  const buttons = document.querySelectorAll(".btn__opp-type");
+const buttons = document.querySelectorAll(".btn__opp-type");
+const resetButton = document.querySelector("#resetBtn");
 
-  let opponents = [];
-  console.log(buttons);
+//  Reset Button
+resetButton.addEventListener("click", () => {
+  opponents = [];
+  console.log(opponents);
+  for (let action in typing) {
+    let listHtml = document.querySelector("#" + action + "List");
+    listHtml.innerHTML = "";
+  }
   buttons.forEach((item) => {
-    item.addEventListener("click", () => {
-      console.log("hiihihih");
-      //setting type of button pressed
-      let btnType = item.dataset.type;
-
-      //control button UI
-      if (opponents.length < 2 || opponents.indexOf(btnType) !== -1) {
-        item.classList.toggle("enabled");
-      }
-
-      //managing buttons/opponents clicked
-      if (
-        opponents[0] !== btnType &&
-        opponents[1] !== btnType &&
-        opponents.length < 2
-      ) {
-        opponents.push(btnType);
-      } else if (opponents[0] === btnType) {
-        opponents.shift();
-      } else if (opponents[1] === btnType) {
-        opponents.pop();
-      } else if (opponents.length === 0) {
-        listItem.innerHTML = "";
-      }
-
-      const toPrint = {
-        attack: {
-          attackYes: [],
-          attackNo: [],
-        },
-        defend: {
-          defendYes: [],
-          defendNo: [],
-        },
-      };
-
-      for (let stra in toPrint) {
-        for (let act in toPrint[stra]) {
-          if (opponents.length === 1) {
-            toPrint[stra][act] = duels[stra][act][opponents[0]].single;
-          } else {
-            toPrint[stra][act] = duels[stra][act][opponents[0]][opponents[1]];
-          }
-
-          let filterList = [];
-
-          for (let i = 0; i < toPrint[stra][act].length; i++) {
-            if (toPrint[stra][act][i] === toPrint[stra][act][i + 1]) {
-              toPrint[stra][act][i + 1] = toPrint[stra][act][i + 1] + "Super";
-              filterList.push(toPrint[stra][act][i + 1]);
-            } else {
-              filterList.push(toPrint[stra][act][i]);
-            }
-          }
-          toPrint[stra][act] = [...new Set(filterList)];
-        }
-      }
-
-      //add icons to UI
-      for (let strate in toPrint) {
-        for (let acti in toPrint[strate]) {
-          let toHtml = document.querySelector("#" + acti + "List");
-          toHtml.innerHTML = "";
-          for (let icon of toPrint[strate][acti]) {
-            //set interval
-            let listItem = document.createElement("li");
-            listItem.classList.add(icon + "-icon", "box__list--btn", "btn");
-            if (icon.includes("Super")) {
-              listItem.innerHTML = `<img id="${icon}Option" src="img/super/${icon}.gif">`;
-            } else {
-              listItem.innerHTML = `<img id="${icon}Option" src="img/${icon}.png">`;
-            }
-            toHtml.appendChild(listItem);
-          }
-        }
-      }
-    });
+    item.classList.remove("enabled");
   });
-}
-buttonFunc();
+});
+
+let opponents = [];
+
+buttons.forEach((item) => {
+  item.addEventListener("click", () => {
+    //setting type of button pressed
+    let btnType = item.dataset.type;
+
+    //control button UI
+    if (opponents.length < 2 || opponents.indexOf(btnType) !== -1) {
+      item.classList.toggle("enabled");
+    }
+
+    //managing buttons/opponents clicked
+    if (
+      opponents[0] !== btnType &&
+      opponents[1] !== btnType &&
+      opponents.length < 2
+    ) {
+      opponents.push(btnType);
+    } else if (opponents[0] === btnType) {
+      opponents.shift();
+    } else if (opponents[1] === btnType) {
+      opponents.pop();
+    }
+
+    const toPrint = {
+      attack: {
+        attackYes: [],
+        attackNo: [],
+      },
+      defend: {
+        defendYes: [],
+        defendNo: [],
+      },
+    };
+
+    for (let stra in toPrint) {
+      for (let act in toPrint[stra]) {
+        if (opponents.length === 1) {
+          toPrint[stra][act] = duels[stra][act][opponents[0]].single;
+        } else if (opponents.length === 2) {
+          toPrint[stra][act] = duels[stra][act][opponents[0]][opponents[1]];
+        }
+
+        let filterList = [];
+
+        for (let i = 0; i < toPrint[stra][act].length; i++) {
+          let curr = toPrint[stra][act][i];
+          let next = toPrint[stra][act][i + 1];
+          if (curr.includes(next)) {
+            next = next + "Super";
+            // filterList.push(next);
+            // let superBtn = document.querySelector(next + "-icon");
+            // superBtn.classList.add("test");
+            // console.log(next + "-icon");
+          } else {
+            filterList.push(curr);
+          }
+        }
+        toPrint[stra][act] = [...new Set(filterList)];
+      }
+    }
+    console.log(toPrint);
+
+    //add icons to UI
+    for (let strate in toPrint) {
+      for (let acti in toPrint[strate]) {
+        let toHtml = document.querySelector("#" + acti + "List");
+        toHtml.innerHTML = "";
+        for (let icon of toPrint[strate][acti]) {
+          //set interval
+          let listItem = document.createElement("li");
+          listItem.classList.add(icon + "-icon", "box__list--btn", "btn");
+          if (icon.includes("Super")) {
+            listItem.innerHTML = `<img id="${icon}Option" src="img/super/${icon}.gif">`;
+          } else {
+            listItem.innerHTML = `<img id="${icon}Option" src="img/${icon}.png">`;
+          }
+          toHtml.appendChild(listItem);
+        }
+      }
+    }
+  });
+});
