@@ -11,12 +11,12 @@ html {
 }
 
 body {
-  padding: 3rem;
   height: 100vh;
   width: 100vw;
   background-color: #e0e5ec;
 }
 #app-container {
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,4 +190,45 @@ body {
 }
 .reset {
   filter: brightness(0.5);
+}
+
+@media all and (max-width: 800px) {
+  #app-container {
+    padding: 1rem;
+  }
+  #app {
+    grid-gap: 1rem 1rem;
+  }
+
+  .box__list {
+    padding: 10px;
+
+    &--btn {
+      width: 37px;
+      height: 37px;
+      margin: 5px;
+      & img {
+        width: 37px;
+      }
+    }
+  }
+
+  #btnBox {
+    justify-content: flex-end;
+  }
+  .opponent-btns {
+    display: grid;
+    grid-template-columns: repeat(6, 40px);
+    grid-gap: 10px;
+    padding: 20px;
+    border-radius: 25px;
+  }
+  .btn__opp-type {
+    height: 40px;
+    width: 40px;
+
+    & img {
+      width: 40px;
+    }
+  }
 }
