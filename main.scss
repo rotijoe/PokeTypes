@@ -240,7 +240,7 @@ section {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // padding: 15px;
+
       @media all and (max-width: 700px) {
         padding: 1ex;
       }
@@ -397,6 +397,7 @@ section {
   height: 100%;
   border: 2px solid;
   border-radius: 7px;
+  padding: 3px;
 
   &__title {
     // text-transform: uppercase;
@@ -415,7 +416,7 @@ section {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    padding: 15px;
+    padding: 10px;
     border-radius: 25px;
     // box-shadow: inset 2px 2px 5px rgba(195, 193, 198, 0.9),
     //   inset -2px -2px 5px #fff, 3px 3px 5px rgba(195, 193, 198, 0.9),
@@ -424,6 +425,7 @@ section {
     height: 100%;
     min-height: 138px;
     align-content: flex-start;
+    justify-content: space-evenly;
 
     &--btn {
       width: 40px;
