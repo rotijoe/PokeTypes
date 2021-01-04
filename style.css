@@ -81,8 +81,9 @@ header {
         @media all and (max-width: 600px) {
           header .nav__links--link {
             font-size: 45px; } }
-        header .nav__links--link:hover {
-          background-color: rgba(0, 0, 0, 0.1); }
+        @media (hover: hover) and (pointer: fine) {
+          header .nav__links--link:hover {
+            background-color: rgba(0, 0, 0, 0.1); } }
 
 #battleLink {
   font-size: 65px;
@@ -96,10 +97,11 @@ header {
   #battleLink::after {
     content: "!";
     visibility: hidden; }
-  #battleLink:hover {
-    text-decoration: underline; }
-    #battleLink:hover::after {
-      visibility: visible; }
+  @media (hover: hover) and (pointer: fine) {
+    #battleLink:hover {
+      text-decoration: underline; }
+      #battleLink:hover::after {
+        visibility: visible; } }
 
 .site-container {
   background-color: #e0e5ec;
@@ -147,8 +149,9 @@ section {
       margin-top: 2vw; }
     .page__content > * + .page__content--title {
       margin-top: 4vw; }
-    .page__content a:hover {
-      text-decoration: underline; }
+    @media (hover: hover) and (pointer: fine) {
+      .page__content a:hover {
+        text-decoration: underline; } }
     .page__content--title {
       font-size: 35px;
       font-weight: 100;
@@ -192,9 +195,10 @@ section {
       max-width: 125px;
       align-self: center;
       transition: 0.2s all; }
-      .page__content--button:hover {
-        background-color: orange;
-        text-decoration: none !important; }
+      @media (hover: hover) and (pointer: fine) {
+        .page__content--button:hover {
+          background-color: orange;
+          text-decoration: none !important; } }
     .page__content--inline-list {
       list-style: inside;
       margin-left: 20px; }
@@ -296,7 +300,8 @@ section {
     padding: 1.7ex 1ex 1ex 1ex;
     background-color: black;
     width: 100%;
-    color: white; }
+    color: white;
+    border-radius: 7px; }
   .box__list {
     display: flex;
     flex-wrap: wrap;
@@ -381,8 +386,9 @@ section {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .btn__opp-type:hover {
-    border: 2px solid; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn__opp-type:hover {
+      border: 2px solid; } }
   .btn__opp-type img {
     width: 60px;
     transition: 0.2s all; }

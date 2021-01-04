@@ -116,8 +116,10 @@ header {
           font-size: 45px;
         }
 
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.1);
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
         }
       }
     }
@@ -139,11 +141,14 @@ header {
     content: "!";
     visibility: hidden;
   }
-  &:hover {
-    text-decoration: underline;
 
-    &::after {
-      visibility: visible;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      text-decoration: underline;
+
+      &::after {
+        visibility: visible;
+      }
     }
   }
 }
@@ -203,9 +208,12 @@ section {
     & > * + &--title {
       margin-top: 4vw;
     }
-    & a:hover {
-      text-decoration: underline;
+    @media (hover: hover) and (pointer: fine) {
+      & a:hover {
+        text-decoration: underline;
+      }
     }
+
     &--title {
       font-size: 35px;
       font-weight: 100;
@@ -262,9 +270,12 @@ section {
       max-width: 125px;
       align-self: center;
       transition: 0.2s all;
-      &:hover {
-        background-color: orange;
-        text-decoration: none !important;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: orange;
+          text-decoration: none !important;
+        }
       }
     }
     &--inline-list {
@@ -398,6 +409,7 @@ section {
     background-color: black;
     width: 100%;
     color: white;
+    border-radius: 7px;
   }
 
   &__list {
@@ -524,8 +536,10 @@ section {
   justify-content: center;
   align-items: center;
 
-  &:hover {
-    border: 2px solid;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border: 2px solid;
+    }
   }
 
   & img {
