@@ -185,6 +185,7 @@ for (let t of typesArr) {
 }
 
 //view logic object in console.
+console.log("All typing logic Object:");
 console.log(duels);
 
 //  SELECTORS
@@ -203,6 +204,8 @@ for (let i = 0; i < typesArr.length; i++) {
   btn.innerHTML = `<img src="img/${typesArr[i]}.png">`;
   btnContainer.appendChild(btn);
 }
+
+//Attempt at function programming:
 
 // function printButtons(i) {
 //   let btn = document.createElement("div");
@@ -231,7 +234,6 @@ const resetButton = document.querySelector("#resetBtn");
 //  Reset Button
 resetButton.addEventListener("click", () => {
   opponents = [];
-  console.log(opponents);
   for (let action in typing) {
     let listHtml = document.querySelector("#" + action + "List");
     listHtml.innerHTML = "";
@@ -251,6 +253,7 @@ buttons.forEach((item) => {
     //control button UI
     if (opponents.length < 2 || opponents.indexOf(btnType) !== -1) {
       item.classList.toggle("enabled");
+      console.log("New Suggestions:");
     }
 
     //managing buttons/opponents clicked
@@ -305,6 +308,7 @@ buttons.forEach((item) => {
         toPrint[strategy][action] = [...new Set(filterList)];
       }
     }
+
     console.log(toPrint);
 
     //add icons to UI
