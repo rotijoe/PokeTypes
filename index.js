@@ -327,3 +327,14 @@ buttons.forEach((item) => {
     }
   });
 });
+
+/////////////////////
+// Toggle nav menu on click of page link
+
+const menuItems = document.querySelectorAll(".nav__links--link");
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    document.querySelector("#navi-toggle").checked = false;
+  });
+});
