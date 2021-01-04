@@ -11,37 +11,225 @@
     />
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
+
+  <header>
+    <a href="#appLinkBlock" id="battleLink">BATTLE</a>
+    <div class="nav">
+      <input class="nav__checkbox" type="checkbox" id="navi-toggle" />
+      <label class="nav__button" for="navi-toggle">
+        <div class="menu-icon" id="openMenu">MENU</div>
+        <div class="menu-icon" id="closeMenu">X</div>
+      </label>
+      <ul class="nav__links">
+        <a href="#howLinkBlock" class="nav__links--link">How to Use</a>
+        <a href="#journeyLinkBlock" class="nav__links--link">App Journey</a>
+        <a href="#facLinkBlock" class="nav__links--link">FAC</a>
+        <a href="#infoLinkBlock" class="nav__links--link">Info</a>
+      </ul>
+    </div>
+  </header>
+
   <body>
-    <main id="app-container">
-      <!-- <h1 id="appTitle">goBattleTypes</h1> -->
+    <main class="site-container">
+      <section id="splash" class="page">
+        <div class="page__content">
+          <h1 class="page__content--title">PokeTypes</h1>
+          <h3 class="page__content--description">
+            The Pokemon Go type effectiveness calculator.
+          </h3>
+        </div>
+      </section>
 
-      <div id="app">
-        <section class="box" id="attYesBox">
-          <h4 class="box__title">Attack with...</h4>
-          <ul class="box__list" id="attackYesList"></ul>
-        </section>
+      <div id="appLinkBlock" class="link-block"></div>
+      <section id="app-container">
+        <div id="app">
+          <div class="box" id="attYesBox">
+            <h4 class="box__title">Attack with...</h4>
+            <ul class="box__list" id="attackYesList"></ul>
+          </div>
 
-        <section class="box" id="defYesBox">
-          <h4 class="box__title">Defend with...</h4>
-          <ul class="box__list" id="defendYesList"></ul>
-        </section>
+          <div class="box" id="defYesBox">
+            <h4 class="box__title">Defend with...</h4>
+            <ul class="box__list" id="defendYesList"></ul>
+          </div>
 
-        <section class="box" id="attNoBox">
-          <h4 class="box__title">Don't Attack with...</h4>
-          <ul class="box__list" id="attackNoList"></ul>
-        </section>
+          <div class="box" id="attNoBox">
+            <h4 class="box__title">Don't Attack with...</h4>
+            <ul class="box__list" id="attackNoList"></ul>
+          </div>
 
-        <section class="box" id="defNoBox">
-          <h4 class="box__title">Don't Defend with...</h4>
-          <ul class="box__list" id="defendNoList"></ul>
-        </section>
+          <div class="box" id="defNoBox">
+            <h4 class="box__title">Don't Defend with...</h4>
+            <ul class="box__list" id="defendNoList"></ul>
+          </div>
 
-        <section class="box" id="btnBox">
-          <h4 class="box__title">Select your opponents type</h4>
-          <div class="opponent-btns"><!-- js --></div>
-          <span class="btn" id="resetBtn">Reset</span>
-        </section>
-      </div>
+          <div class="box" id="btnBox">
+            <h4 class="box__title">Select your opponents type</h4>
+            <div class="opponent-btns"><!-- js --></div>
+          </div>
+          <div id="resetBtn">Reset</div>
+        </div>
+      </section>
+      <div id="howLinkBlock" class="link-block"></div>
+      <section class="page" id="how">
+        <div class="page__content">
+          <h2 class="page__content--title">How to Use</h2>
+          <ul class="page__content--list">
+            <li class="page__content--listitem">
+              1. Enter the type of Pokemon you are battling against.
+            </li>
+            <li class="page__content--listitem">
+              2. See the options you have appear in four boxes:
+            </li>
+          </ul>
+          <div class="page__content--container">
+            <div class="page__content--box">
+              <h4 class="highlight">Attack with:</h4>
+              <p>Move types that will do most damage against your opponent.</p>
+            </div>
+            <div class="page__content--box">
+              <h4 class="highlight">Don't Attack with:</h4>
+              <p>
+                Move types that will do the least damage against your opponent.
+              </p>
+            </div>
+            <div class="page__content--box">
+              <h4 class="highlight">Defend with:</h4>
+              <p>
+                Pokemon types that take least damage from your opponent's moves.
+              </p>
+            </div>
+            <div class="page__content--box">
+              <h4 class="highlight">Don't defend with:</h4>
+              <p>
+                Pokemon types that take most damage from your opponent's moves.
+              </p>
+            </div>
+          </div>
+
+          <a href="#appLinkBlock" class="page__content--button">Battle</a>
+        </div>
+      </section>
+
+      <div id="journeyLinkBlock" class="link-block"></div>
+      <section class="page" id="journey">
+        <div class="page__content">
+          <h2 class="page__content--title">App Journey</h2>
+          <ul class="page__content--list">
+            <li class="page__content--listitem">
+              1. Aims: Create a simple and quick to use application.
+            </li>
+            <li class="page__content--listitem">
+              2. Tech Inspiration: Coding a rock, paper, scissors app.
+            </li>
+            <li class="page__content--listitem">
+              3. Object-orientated: Manually creating the first object that only
+              worked for single typing
+            </li>
+            <li class="page__content--listitem">
+              4. Javascript object building: Creating a complex object
+              dynamically with javascript
+            </li>
+            <li class="page__content--listitem">
+              5. Debugging: Cleaning the object: <br />
+              <ul class="page__content--inline-list">
+                <li>
+                  Filtering types that appear in both the 'with' and 'not with'
+                  lists before rendering to the DOM.
+                </li>
+                <li>
+                  Turn two and three identical list items into a single
+                  super-super-effective icon
+                </li>
+              </ul>
+            </li>
+            <li class="page__content--listitem">
+              6. Tech Inspiration: Coding a rock, paper, scissors app.
+            </li>
+            <li class="page__content--listitem">
+              7. DOM: Rendering completed arrays to the DOM
+            </li>
+            <li class="page__content--listitem">
+              8. Feedback: Make more accessible buttons
+            </li>
+            <li class="page__content--listitem">9. Update: Update UI</li>
+          </ul>
+          <h2 class="page__content--title">Improvements</h2>
+          <ul class="page__content--list">
+            <li class="page__content--listitem">1. Meta-Pokemon choices.</li>
+            <li class="page__content--listitem">2. Further accessibility.</li>
+            <li class="page__content--listitem">
+              3. Javascript DOM animations.
+            </li>
+            <li class="page__content--listitem">
+              4. Super-effectiveness numbers displayed.
+            </li>
+            <li class="page__content--listitem">
+              5. Multiple suggestions panels.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div id="facLinkBlock" class="link-block"></div>
+      <section class="page" id="fandc">
+        <div class="page__content">
+          <img
+            class="page__content--imgTitle"
+            src="https://d33wubrfki0l68.cloudfront.net/c2d50fb2bb7fbce77cb5c3d20032fcb565eb39cb/7070e/static/fac_logo-4255a40f47764e69170884e3030fb6b3.svg"
+            alt="Founders &amp; Coders branded logo"
+          />
+          <h3 class="page__content--description">
+            Why I am applying to
+            <a href="https://www.foundersandcoders.com/">Founders & Coders</a>
+            Spring Cohort?
+          </h3>
+          <ul class="page__content--list">
+            <li class="page__content--listitem">
+              1. Work with a diverse group of coders.
+            </li>
+            <li class="page__content--listitem">
+              2. Learn industry standards and best practices.
+            </li>
+            <li class="page__content--listitem">
+              3. Build real world applications in a professional context.
+            </li>
+            <li class="page__content--listitem">
+              4. Learn more about the architecture of the web.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div id="infoLinkBlock" class="link-block"></div>
+      <section class="page" id="info">
+        <div class="page__content">
+          <h3 class="page__content--title">Connect with me</h3>
+          <h5 class="page__content--description">
+            Find links to my work and learnings for this project below:
+          </h5>
+          <div class="page__content--flexrow">
+            <a href="https://www.codewars.com/users/rotijoe"
+              ><img
+                class="page__content--imgLink"
+                src="./img/codewars-logo.png"
+                alt="Codewars Logo"
+            /></a>
+            <a href="https://github.com/rotijoe/rotijoe.github.io"
+              ><img
+                class="page__content--imgLink"
+                src="./img/github-logo.png"
+                alt="Github Logo Logo"
+            /></a>
+            <a href="https://www.freecodecamp.org/rotijoe"
+              ><img
+                class="page__content--imgLink"
+                src="./img/fcc-logo.png"
+                alt="Codewars Logo"
+            /></a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- <script src="script.js"></script> -->

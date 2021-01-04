@@ -51,11 +51,11 @@ const typing = {
     fighting: ["bug", "dark", "rock"],
     fire: ["bug", "grass", "fire", "ice", "steel"],
     flying: ["bug", "fighting", "grass", "ground", "ground"],
-    ghost: ["bug", "fightingSuper", "normalSuper", "poison"],
+    ghost: ["bug", "fighting", "fighting", "normal", "normal", "poison"],
     grass: ["electric", "grass", "ground", "water"],
-    ground: ["electricSuper", "poison", "rock"],
+    ground: ["electric", "electric", "poison", "rock"],
     ice: ["ice"],
-    normal: ["ghostSuper"],
+    normal: ["ghost", "ghost"],
     poison: ["grass", "fairy", "fighting", "poison"],
     psychic: ["fighting", "psychic"],
     rock: ["fire", "flying", "normal", "poison"],
@@ -67,7 +67,8 @@ const typing = {
       "grass",
       "ice",
       "normal",
-      "poisonSuper",
+      "poison",
+      "poison",
       "psychic",
       "rock",
       "steel",
@@ -276,30 +277,32 @@ buttons.forEach((item) => {
       },
     };
 
-    for (let stra in toPrint) {
-      for (let act in toPrint[stra]) {
+    for (let strategy in toPrint) {
+      for (let action in toPrint[strategy]) {
         if (opponents.length === 1) {
-          toPrint[stra][act] = duels[stra][act][opponents[0]].single;
+          toPrint[strategy][action] =
+            duels[strategy][action][opponents[0]].single;
         } else if (opponents.length === 2) {
-          toPrint[stra][act] = duels[stra][act][opponents[0]][opponents[1]];
+          toPrint[strategy][action] =
+            duels[strategy][action][opponents[0]][opponents[1]];
         }
 
         let filterList = [];
 
-        for (let i = 0; i < toPrint[stra][act].length; i++) {
-          let curr = toPrint[stra][act][i];
-          let next = toPrint[stra][act][i + 1];
-          if (curr.includes(next)) {
-            next = next + "Super";
-            // filterList.push(next);
-            // let superBtn = document.querySelector(next + "-icon");
-            // superBtn.classList.add("test");
-            // console.log(next + "-icon");
+        for (let i = 0; i < toPrint[strategy][action].length; i++) {
+          let prev = toPrint[strategy][action][i - 1];
+          let curr = toPrint[strategy][action][i];
+          let next = toPrint[strategy][action][i + 1];
+          if (curr.includes(prev)) {
+          } else if (curr.includes(next)) {
+            curr = curr + "Super";
+            i += 1;
+            filterList.push(curr);
           } else {
             filterList.push(curr);
           }
         }
-        toPrint[stra][act] = [...new Set(filterList)];
+        toPrint[strategy][action] = [...new Set(filterList)];
       }
     }
     console.log(toPrint);
