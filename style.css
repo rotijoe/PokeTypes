@@ -28,12 +28,9 @@ header {
     header .nav__checkbox {
       display: none; }
     header .nav__checkbox:checked ~ ul {
-      height: 325px;
+      height: auto;
       transition: 0.2s;
       border-top: 1px solid black; }
-      @media all and (max-width: 600px) {
-        header .nav__checkbox:checked ~ ul {
-          height: 235px; } }
     header .nav__checkbox:checked ~ ul a {
       display: inline-block; }
     header .nav__checkbox:checked ~ .nav__button #openMenu {

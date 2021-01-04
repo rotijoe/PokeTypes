@@ -39,13 +39,9 @@ header {
 
     &__checkbox:checked ~ ul {
       // background-color: greenyellow;
-      height: 325px;
+      height: auto;
       transition: 0.2s;
       border-top: 1px solid black;
-
-      @media all and (max-width: 600px) {
-        height: 235px;
-      }
     }
     &__checkbox:checked ~ ul a {
       display: inline-block;
