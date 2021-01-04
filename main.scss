@@ -564,13 +564,6 @@ section {
   }
 }
 
-.type-icon img {
-  // width: 80px;
-}
-
-.btn__opp-type {
-  // filter: brightness(0.85);
-}
 .enabled {
   box-shadow: inset 2px 2px 5px rgba(195, 193, 198, 0.9),
     inset -2px -2px 5px #fff;
@@ -582,6 +575,8 @@ section {
 .reset {
   filter: brightness(0.5);
 }
+
+//Button sizes edit at below 600px.
 
 @media all and (max-width: 600px) {
   .box__list {
@@ -597,14 +592,12 @@ section {
     }
   }
 
-  .opponent-btns {
-  }
   .btn__opp-type {
-    height: 35px;
-    width: 35px;
+    height: 41px;
+    width: 41px;
 
     & img {
-      width: 35px;
+      width: 41px;
     }
   }
 }
